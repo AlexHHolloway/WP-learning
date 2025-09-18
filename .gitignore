@@ -1,0 +1,75 @@
+# WordPress Core - Exclude entire WordPress installation except our custom theme
+app/public/wp-admin/
+app/public/wp-includes/
+app/public/wp-*.php
+app/public/xmlrpc.php
+app/public/license.txt
+app/public/readme.html
+app/public/index.php
+app/public/local-xdebuginfo.php
+
+# WordPress Config
+app/public/wp-config.php
+app/public/wp-config-local.php
+app/public/wp-config-sample.php
+
+# WordPress Content - Keep only our custom theme, ignore everything else
+app/public/wp-content/uploads/
+app/public/wp-content/cache/
+app/public/wp-content/upgrade/
+app/public/wp-content/backup-db/
+app/public/wp-content/backups/
+app/public/wp-content/blogs.dir/
+app/public/wp-content/w3tc-config/
+app/public/wp-content/themes/twenty*/
+app/public/wp-content/plugins/
+app/public/wp-content/mu-plugins/
+app/public/wp-content/languages/
+app/public/wp-content/index.php
+
+# Local development environment
+sql/
+logs/
+conf/
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node.js (if used for build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Compiled files
+*.css.map
+*.js.map
+
+# Package managers
+package-lock.json
+yarn.lock
