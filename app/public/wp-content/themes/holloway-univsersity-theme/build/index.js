@@ -1,5 +1,5 @@
-(window.webpackJsonp_fictional_university_theme =
-  window.webpackJsonp_fictional_university_theme || []).push([
+(window.webpackJsonp_Holloway_university_theme =
+  window.webpackJsonp_Holloway_university_theme || []).push([
   [1],
   [function (t, e, n) {}],
 ]),
@@ -80,8 +80,8 @@
         return Object.prototype.hasOwnProperty.call(t, e);
       }),
       (s.p = "");
-    var u = (window.webpackJsonp_fictional_university_theme =
-        window.webpackJsonp_fictional_university_theme || []),
+    var u = (window.webpackJsonp_Holloway_university_theme =
+        window.webpackJsonp_Holloway_university_theme || []),
       a = u.push.bind(u);
     (u.push = e), (u = u.slice());
     for (var c = 0; c < u.length; c++) e(u[c]);
