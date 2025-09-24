@@ -1187,24 +1187,24 @@ body.admin-bar .search-overlay {
   font-weight: 300;
 }
 .headline--large {
-  font-size: 3.6rem;
+  font-size: 3.1rem;
 }
 @media (min-width: 530px) {
   .headline--large {
-    font-size: 6.25rem;
+    font-size: 6rem;
   }
 }
 .headline--large-medium {
-  font-size: 5rem;
+  font-size: 3.5rem;
   margin: 0 0 1rem 0;
 }
 .headline--medium {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-bottom: 0.75rem;
 }
 @media (min-width: 530px) {
   .headline--medium {
-    font-size: 3.125rem;
+    font-size: 2rem;
   }
 }
 .headline--small-plus {
@@ -1214,7 +1214,7 @@ body.admin-bar .search-overlay {
   margin-bottom: 1.9rem;
 }
 .headline--small {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 1.9rem;
 }
 @media (min-width: 530px) {
