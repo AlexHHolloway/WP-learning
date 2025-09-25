@@ -7,8 +7,6 @@
         the_post();
 
             pageBanner(array(
-                'title' => 'Hello, Title!!',
-                'subtitle' => 'subtitle!',
                 'photo' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
             ));
 
