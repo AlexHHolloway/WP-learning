@@ -48,7 +48,7 @@ function pageBanner($args = NULL) {
 <?php }
 
 // Enqueue theme stylesheet
-function holloway_university_styles() {
+function holloway_university_files() {
     wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
 
     wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
@@ -59,10 +59,11 @@ function holloway_university_styles() {
 
     wp_localize_script('main-university-js', 'universityData', array(
         'root_url' => get_site_url(),
+        'nonce' => wp_create_nonce('wp_rest')
     ));
 }
 
-add_action('wp_enqueue_scripts', 'holloway_university_styles');
+add_action('wp_enqueue_scripts', 'holloway_university_files');
 
 function university_features() {
     add_theme_support('title-tag');
@@ -157,4 +158,22 @@ function customLoginCss() {
 
     wp_enqueue_style('holloway-university-style', get_theme_file_uri('/build/style-index.css'));
     wp_enqueue_style('holloway-university-extra-style', get_theme_file_uri('/build/index.css'));
+}
+
+// force note posts to be private
+add_filter('wp_insert_post_data', 'makeNotePrivate');
+
+function makeNotePrivate($data) {
+    if ($data['post_type'] == 'note' && $data['post_status'] != 'trash') {
+        $data['post_status'] = "private";
+    }
+
+    return $data;
+}
+
+// Remove "Private: " from note titles
+add_filter('private_title_format', 'removePrivatePrefix');
+
+function removePrivatePrefix($title) {
+    return '%s';
 }
