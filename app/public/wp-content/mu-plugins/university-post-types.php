@@ -1,7 +1,10 @@
 <?php 
+
 // event post-type
 function university_post_types() {
     register_post_type('event', array(
+        'capability_type' => 'event',
+        'map_meta_cap' => true,
         'supports' => array('title', 'editor', 'excerpt'),
         'rewrite' => array('slug' => 'events'),
         'has_archive' => true,
@@ -19,6 +22,8 @@ function university_post_types() {
 
     // campus post-type
     register_post_type('campus', array(
+        'capability_type' => 'event',
+        'map_meta_cap' => true,
         'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
         'rewrite' => array('slug' => 'campuses'),
         'has_archive' => true,
