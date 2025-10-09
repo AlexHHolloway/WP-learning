@@ -9,6 +9,11 @@ function university_custom_rest() {
             return get_the_author();
         }
     ));
+    register_rest_field('note', 'noteCount', array(
+        'get_callback' => function () {
+            return count_user_posts(get_current_user_id(), 'note');
+        }
+    ));
 }
 
 add_action('rest_api_init', 'university_custom_rest');
@@ -161,14 +166,34 @@ function customLoginCss() {
 }
 
 // force note posts to be private
-add_filter('wp_insert_post_data', 'makeNotePrivate');
+add_filter('wp_insert_post_data', 'makeNotePrivate', 10, 2);
 
-function makeNotePrivate($data) {
+function makeNotePrivate($data, $postarr) {
     if ($data['post_type'] == 'note' && $data['post_status'] != 'trash') {
         $data['post_status'] = "private";
     }
+    // sanitize note data
+    if ($data['post_type'] == 'note') {
+        $data['post_content'] = sanitize_textarea_field($data['post_content']);
+        $data['post_title'] = sanitize_text_field($data['post_title']);
+    }
 
     return $data;
+}
+
+// Block note creation if user has reached limit
+add_filter('rest_pre_insert_note', 'checkNoteLimit', 10, 2);
+
+function checkNoteLimit($prepared_post, $request) {
+    $noteCount = count_user_posts(get_current_user_id(), 'note');
+    if ($noteCount >= 5) {
+        return new WP_Error(
+            'note_limit', 
+            'You have reached your note limit of 5. Please delete an existing note to create a new one.', 
+            array('status' => 403, 'noteCount' => $noteCount)
+        );
+    }
+    return $prepared_post;
 }
 
 // Remove "Private: " from note titles

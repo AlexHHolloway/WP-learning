@@ -722,16 +722,6 @@ body.login {
   opacity: 0.5;
 }
 
-#my-notes li.fade-in-calc {
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  position: absolute;
-  right: 0;
-  left: 0;
-  opacity: 0;
-}
-
 .site-header {
   z-index: 3;
   position: absolute;
