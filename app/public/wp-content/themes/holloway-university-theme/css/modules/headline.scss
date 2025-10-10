@@ -4,47 +4,47 @@
   font-weight: 300;
 
   &--large {
-    font-size: 3.6rem;
+    font-size: 3.2rem;
     @include atSmall {
-      font-size: 6.25rem;
+      font-size: 5.2rem;
     }
   }
 
   &--large-medium {
-    font-size: 5rem;
+    font-size: 4.4rem;
     margin: 0 0 1rem 0;
   }
 
   &--medium {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
     margin-bottom: 0.75rem;
     @include atSmall {
-      font-size: 3.125rem;
+      font-size: 2.3rem;
     }
   }
 
   &--small-plus {
     font-family: "Roboto", sans-serif;
-    font-size: 1.6875rem;
+    font-size: 1.3rem;
     font-weight: 400;
-    margin-bottom: 1.9rem;
+    margin-bottom: 1.8rem;
   }
 
   &--small {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 1.9rem;
     @include atSmall {
-      font-size: 1.6875rem;
+      font-size: 1.3rem;
     }
   }
 
   &--smaller {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   &--tiny {
     font-family: "Roboto", sans-serif;
-    font-size: 1.3875rem;
+    font-size: 1.15rem;
     margin-bottom: 0.25rem;
   }
 

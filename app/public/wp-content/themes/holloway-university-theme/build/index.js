@@ -5997,9 +5997,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_HeroSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/HeroSlider */ "./src/modules/HeroSlider.js");
 /* harmony import */ var _modules_Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Search */ "./src/modules/Search.js");
 /* harmony import */ var _modules_MyNotes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/MyNotes */ "./src/modules/MyNotes.js");
+/* harmony import */ var _modules_Like__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/Like */ "./src/modules/Like.js");
 
 
 // Our modules / classes
+
 
 
 
@@ -6010,6 +6012,7 @@ const mobileMenu = new _modules_MobileMenu__WEBPACK_IMPORTED_MODULE_1__["default
 const heroSlider = new _modules_HeroSlider__WEBPACK_IMPORTED_MODULE_2__["default"]();
 const search = new _modules_Search__WEBPACK_IMPORTED_MODULE_3__["default"]();
 const myNotes = new _modules_MyNotes__WEBPACK_IMPORTED_MODULE_4__["default"]();
+const like = new _modules_Like__WEBPACK_IMPORTED_MODULE_5__["default"]();
 
 /***/ }),
 
@@ -6052,6 +6055,85 @@ class HeroSlider {
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeroSlider);
+
+/***/ }),
+
+/***/ "./src/modules/Like.js":
+/*!*****************************!*\
+  !*** ./src/modules/Like.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+class Like {
+  constructor() {
+    if (universityData.nonce) {
+      (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults).headers.common["X-WP-Nonce"] = universityData.nonce;
+    }
+    this.events();
+  }
+  events() {
+    const likeBox = document.querySelector(".like-box");
+    if (likeBox) {
+      likeBox.addEventListener("click", this.clickDispacher.bind(this));
+    }
+  }
+
+  // custom methods
+  clickDispacher(e) {
+    if (e.currentTarget.dataset.exists === "yes") {
+      this.deleteLike(e);
+    } else {
+      this.createLike(e);
+    }
+  }
+  async createLike(e) {
+    const likeBox = e.currentTarget;
+    const professorId = likeBox.dataset.professor;
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(universityData.root_url + "/wp-json/university/v1/manageLike", {
+        liked_professor_id: professorId
+      });
+      likeBox.dataset.exists = "yes";
+      likeBox.dataset.like = response.data;
+      likeBox.querySelector(".fa-heart-o").style.display = "none";
+      likeBox.querySelector(".fa-heart").style.display = "inline";
+      likeBox.querySelector(".like-count").textContent = parseInt(likeBox.querySelector(".like-count").textContent) + 1;
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async deleteLike(e) {
+    const likeBox = e.currentTarget;
+    const likeId = likeBox.dataset.like;
+    const professorId = likeBox.dataset.professor;
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](universityData.root_url + "/wp-json/university/v1/manageLike", {
+        data: {
+          like_id: likeId,
+          liked_professor_id: professorId
+        }
+      });
+      likeBox.dataset.exists = "no";
+      likeBox.dataset.like = "";
+      likeBox.querySelector(".fa-heart-o").style.display = "inline";
+      likeBox.querySelector(".fa-heart").style.display = "none";
+      likeBox.querySelector(".like-count").textContent = parseInt(likeBox.querySelector(".like-count").textContent) - 1;
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Like);
 
 /***/ }),
 

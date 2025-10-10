@@ -14,8 +14,8 @@
 
   &__avatar img {
     display: block;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
 
   &__menu {
@@ -28,7 +28,9 @@
     padding-top: 58px;
     opacity: 0;
     transform: translateY(-20%);
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+    transition:
+      opacity 0.3s ease-out,
+      transform 0.3s ease-out;
     padding-bottom: 20px;
 
     &--active {
@@ -37,7 +39,7 @@
       visibility: visible;
     }
 
-    @include atMedium {
+    @include atNavCollapse {
       visibility: visible;
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -63,7 +65,7 @@
       font-size: 1.4rem;
     }
 
-    @include atMedium {
+    @include atNavCollapse {
       display: none;
     }
   }
@@ -76,13 +78,14 @@
     z-index: 10;
     top: 7px;
     right: 46px;
+    padding-right: 12px;
 
     @include atSmall {
       top: 5px;
       font-size: 1.4rem;
     }
 
-    @include atMedium {
+    @include atNavCollapse {
       display: none;
     }
   }
@@ -90,7 +93,7 @@
   &__util {
     padding: 0 0 0 20px;
 
-    @include atMedium {
+    @include atNavCollapse {
       padding: 0;
       float: right;
     }
@@ -98,7 +101,7 @@
 
   &__btn {
     margin-right: 20px;
-    @include atMedium {
+    @include atNavCollapse {
       float: left;
     }
   }

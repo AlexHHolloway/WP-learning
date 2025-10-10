@@ -1,6 +1,7 @@
 <?php
 
 require get_theme_file_path('./inc/search-route.php');
+require get_theme_file_path('./inc/like-route.php');
 
 // custom rest parameters
 function university_custom_rest() {
@@ -62,9 +63,11 @@ function holloway_university_files() {
     wp_enqueue_style('holloway-university-style', get_theme_file_uri('/build/style-index.css'));
     wp_enqueue_style('holloway-university-extra-style', get_theme_file_uri('/build/index.css'));
 
+    $current_user = wp_get_current_user();
     wp_localize_script('main-university-js', 'universityData', array(
         'root_url' => get_site_url(),
-        'nonce' => wp_create_nonce('wp_rest')
+        'nonce' => wp_create_nonce('wp_rest'),
+        'userName' => is_user_logged_in() ? $current_user->user_login : '',
     ));
 }
 

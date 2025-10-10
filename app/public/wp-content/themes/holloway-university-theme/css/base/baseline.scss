@@ -1,3 +1,9 @@
+@mixin atNavCollapse {
+  @media (min-width: 1340px) {
+    @content;
+  }
+}
+
 @mixin atSmall {
   @media (min-width: 530px) {
     @content;
